@@ -1,7 +1,7 @@
 #!ipxe
 
 # Use a mirror that works on your network
-set mirror http://ftp.halifax.rwth-aachen.de/pub/fedora/linux/releases/44
+set mirror http://dl.fedoraproject.org/pub/fedora/linux/releases/44
 set arch x86_64
 set repo ${mirror}/Everything/${arch}/os
 
