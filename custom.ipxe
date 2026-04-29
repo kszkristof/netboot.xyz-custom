@@ -1,15 +1,19 @@
 #!ipxe
 
-# Use a direct mirror to avoid redirect issues
-set mirror http://mirrors.leaseweb.com/fedora/releases/44
+# Use a mirror that works on your network
+set mirror http://ftp.halifax.rwth-aachen.de/pub/fedora/linux/releases/44
 set arch x86_64
 set repo ${mirror}/Everything/${arch}/os
 
-# Troubleshooting: Print the URI to make sure it's correct
-echo Loading Fedora 41 from: ${repo}
+# 1. Clear any previous images from memory
+imgfree
 
-# Start installer
-# We add 'initrd=initrd.img' to the kernel line so the kernel knows to mount it
+# 2. Load the Kernel with the specific name of the initrd it should look for
+# We also add 'ip=dhcp' to ensure the installer starts the network immediately
 kernel ${repo}/images/pxeboot/vmlinuz initrd=initrd.img inst.repo=${repo} ip=dhcp
-initrd ${repo}/images/pxeboot/initrd.img
+
+# 3. Load the Initrd and explicitly name it so the kernel can find it
+initrd --name initrd.img ${repo}/images/pxeboot/initrd.img
+
+# 4. Boot
 boot
