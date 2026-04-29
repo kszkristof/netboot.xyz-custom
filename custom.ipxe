@@ -1,7 +1,7 @@
 #!ipxe
 
 # Use a direct mirror to avoid redirect issues
-set mirror http://mirrors.leaseweb.com/fedora/releases/41
+set mirror http://mirrors.leaseweb.com/fedora/releases/44
 set arch x86_64
 set repo ${mirror}/Everything/${arch}/os
 
